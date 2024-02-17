@@ -1,11 +1,3 @@
-################
-#
-# Deep Flow Prediction - N. Thuerey, K. Weissenov, H. Mehrotra, N. Mainali, L. Prantl, X. Hu (TUM)
-#
-# CNN setup and data normalization
-#
-################
-
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -27,7 +19,7 @@ def blockUNet(in_c, out_c, name, transposed=False, bn=True, relu=True, size=4, p
     if not transposed:
         block.add_module('%s_conv' % name, nn.Conv2d(in_c, out_c, kernel_size=size, stride=2, padding=pad, bias=True))
     else:
-        block.add_module('%s_upsam' % name, nn.Upsample(scale_factor=2, mode='bilinear')) # Note: old default was nearest neighbor
+        block.add_module('%s_upsam' % name, nn.Upsample(scale_factor=2, mode='bilinear',align_corners=True)) # Note: old default was nearest neighbor
         # reduce kernel size by one for the upsampling (ie decoder part)
         block.add_module('%s_tconv' % name, nn.Conv2d(in_c, out_c, kernel_size=(size-1), stride=1, padding=pad, bias=True))
     if bn:
@@ -50,7 +42,7 @@ class TurbNetG(nn.Module):
         self.layer3 = blockUNet(channels*2, channels*4, 'layer3', transposed=False, bn=True,  relu=False, dropout=dropout )
         # note the following layer also had a kernel size of 2 in the original version (cf https://arxiv.org/abs/1810.08217)
         # it is now changed to size 4 for encoder/decoder symmetry; to reproduce the old/original results, please change it to 2
-        self.layer4 = blockUNet(channels*4, channels*8, 'layer4', transposed=False, bn=True,  relu=False, dropout=dropout ,  size=4 ) # note, size 4!
+        self.layer4 = blockUNet(channels*4, channels*8, 'layer4', transposed=False, bn=True,  relu=False, dropout=dropout , size=4) # note, size 4!
         self.layer5 = blockUNet(channels*8, channels*8, 'layer5', transposed=False, bn=True,  relu=False, dropout=dropout , size=2,pad=0)
         self.layer6 = blockUNet(channels*8, channels*8, 'layer6', transposed=False, bn=False, relu=False, dropout=dropout , size=2,pad=0)
      

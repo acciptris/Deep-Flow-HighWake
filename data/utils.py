@@ -1,11 +1,3 @@
-################
-#
-# Deep Flow Prediction - N. Thuerey, K. Weissenov, H. Mehrotra, N. Mainali, L. Prantl, X. Hu (TUM)
-#
-# Helpers for data generation
-#
-################
-
 import os
 import numpy as np
 from PIL import Image
