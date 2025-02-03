@@ -1,8 +1,9 @@
 # Deep-Flow-HighWake 
 
-This repository contains code that is used in our study titled "Addressing performance improvement of a Neural Network model for Reynolds-Averaged Navier-Stokes solutions with high wake formation" by A. A. Kumar and A. Assam.
+This repository contains code that is used in our study titled, “Addressing performance improvement of a neural network model for Reynolds-averaged Navier–Stokes solutions with high wake formation,” by A. A. Kumar and A. Assam published in Engineering Computations, 2024 (https://doi.org/10.1108/EC-08-2023-0446).
 
-This repository was forked from <https://github.com/thunil/Deep-Flow-Prediction>, which was used in the work titled “Deep learning methods for reynolds-averaged navier–stokes simulations of airfoil flows,” by N. Thuerey, K. Weißenow, L. Prantl, and X. Hu, AIAA Journal (2019), doi: 10.2514/1.J058291.
+
+This repository was forked from <https://github.com/thunil/Deep-Flow-Prediction>, which was used in the work titled “Deep learning methods for reynolds-averaged navier–stokes simulations of airfoil flows,” by N. Thuerey, K. Weißenow, L. Prantl, and X. Hu, published in AIAA Journal, 2019 (https://doi.org/10.2514/1.J058291).
 
 Code for data generation using multiprocessing, and network training and evaluation is provided.
 
